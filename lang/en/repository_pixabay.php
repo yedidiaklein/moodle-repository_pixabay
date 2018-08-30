@@ -24,7 +24,14 @@
 
  defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = "Pixabay Repository";
+$string['pluginname'] = "Pixabay Media";
 $string['configplugin'] = "Pixabay Repository Settings";
 $string['key'] = "Pixabay API Key";
 $string['key_description'] = 'Find your API key at <a href="https://pixabay.com/api/docs/">https://pixabay.com/api/docs/</a>';
+$string['search'] = "Search";
+$string['safe'] = "Safe";
+$string['unsafe'] = "Unsafe";
+$string['sortby'] = "Sort By";
+$string['popular'] = "Popular";
+$string['latest'] = "Latest";
+$string['safesearch'] = "Safe Search<br>(only images suitable for all ages should be returned)";

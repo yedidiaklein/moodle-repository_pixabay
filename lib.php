@@ -45,7 +45,10 @@ class repository_pixabay extends repository {
     public function search($searchtext, $page = 0) {
         $key = get_config('pixabay','key');
         $q = $searchtext;
-        $json = file_get_contents("https://pixabay.com/api/?key=" . $key . "&q=" . $q);
+        $sort = optional_param('pixabay_sort', 'popular', PARAM_TEXT);
+        $safesearch = optional_param('pixabay_safesearch', 'true', PARAM_TEXT);
+        $url = "https://pixabay.com/api/?key=" . $key . "&q=" . $q . "&order=" . $sort . "&safesearch=" . $safesearch;
+        $json = file_get_contents($url);
         $results = json_decode($json);
 
         foreach ($results->hits as $key => $value) {
@@ -67,7 +70,7 @@ class repository_pixabay extends repository {
         }
 
         $ret  = array();
-        $ret['nologin'] = true;
+        $ret['nologin'] = FALSE;
         $ret['page'] = (int)$page;
         if ($ret['page'] < 1) {
             $ret['page'] = 1;
@@ -93,6 +96,72 @@ class repository_pixabay extends repository {
                             . get_string('key_description', 'repository_pixabay') . ")" , array('size' => '40'));
         $mform->setDefault('key', $key);
         $mform->setType('key', PARAM_RAW_TRIMMED);
+    }
+
+    public function check_login() {
+        return !empty($this->keyword);
+    }
+
+     /**
+     * Generate search form
+     */
+    public function print_login($ajax = true) {
+        $ret = array();
+        $logo = '<a href="https://pixabay.com/" target="_new">
+                    <img src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay" style="width:100%">
+                </a><br>';
+        $search = new stdClass();
+        $search->type = 'text';
+        $search->id   = 'pixabay_search';
+        $search->name = 's';
+        $search->label = $logo . get_string('search', 'repository_pixabay').': ';
+
+        $sort = new stdClass();
+        $sort->type = 'select';
+        $sort->options = array(
+            (object)array(
+                'value' => 'popular',
+                'label' => get_string('popular', 'repository_pixabay')
+            ),
+            (object)array(
+                'value' => 'latest',
+                'label' => get_string('latest', 'repository_pixabay')
+            )
+        );
+        $sort->id = 'pixabay_sort';
+        $sort->name = 'pixabay_sort';
+        $sort->label = get_string('sortby', 'repository_pixabay').': ';
+
+        $safesearch = new stdClass();
+        $safesearch->type = 'select';
+        $safesearch->options = array( 
+            (object)array(
+                'value' => 'true',
+                'label' => get_string('safe', 'repository_pixabay')
+            ),
+            (object)array(
+                'value' => 'false',
+                'label' => get_string('unsafe', 'repository_pixabay')
+            )
+        );
+
+        $safesearch->id = 'pixabay_safesearch';
+        $safesearch->name = 'pixabay_safesearch';
+        $safesearch->label = get_string('safesearch', 'repository_pixabay').': ';
+
+        $ret['login'] = array($search, $sort, $safesearch);
+        $ret['login_btn_label'] = get_string('search');
+        $ret['login_btn_action'] = 'search';
+        $ret['allowcaching'] = true; // indicates that login form can be cached in filepicker.js
+        return $ret;
+    }
+
+    /**
+     * pixaby plugin only return internal links, according to pixabay term of use.
+     * @return int
+     */
+    public function supported_returntypes() {
+        return FILE_INTERNAL;
     }
 
 }
