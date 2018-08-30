@@ -1,1 +1,16 @@
-# moodle-repository_pixabay
+I really love Pixabay images. so I wanted to have an easy way to use these images in Moodle.
+
+_How to Install_
+* Download as zip or via Git.
+* Extract in your [moodle_root]/local
+* Rename the extracted directory to : pixabay
+* Get you API key from pixabay at https://pixabay.com/api/docs/ (You have to create there an account)
+* Go to your Moodle notification page and install the plugin.
+* Go to your moodle admin -> plugin -> repositories - and enable this repository.
+* Get into this repository settings and insert your API key (won't work without key!)
+* Now the repository should be in your file picker.
+* enjoy!
+
+_Copyright_
+Developped by Yedidia Klein <yedidia@openapp.co.il> from Openapp LTD. Israel.
+

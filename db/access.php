@@ -23,10 +23,10 @@
  */
 
  /**
- * Plugin capabilities.
- *
- * @package    repository_pixabay
- */
+  * Plugin capabilities.
+  *
+  * @package    repository_pixabay
+  */
 
 defined('MOODLE_INTERNAL') || die();
 

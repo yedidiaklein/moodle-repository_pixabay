@@ -22,5 +22,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = "מאגר Pixabay"; 
+defined('MOODLE_INTERNAL') || die();
+
+$string['pluginname'] = "מאגר Pixabay";
 $string['configplugin'] = "הגדרות מאגר Pixabay";
+$string['key'] = "מפתח Pixabay API";
+$string['key_description'] = 'ניתן למצוא את המפתח כאן <a href="https://pixabay.com/api/docs/">https://pixabay.com/api/docs/</a>';

@@ -22,5 +22,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = "Pixabay Repository"; 
+ defined('MOODLE_INTERNAL') || die();
+
+$string['pluginname'] = "Pixabay Repository";
 $string['configplugin'] = "Pixabay Repository Settings";
+$string['key'] = "Pixabay API Key";
+$string['key_description'] = 'Find your API key at <a href="https://pixabay.com/api/docs/">https://pixabay.com/api/docs/</a>';
