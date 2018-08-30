@@ -102,9 +102,23 @@ class repository_pixabay extends repository {
         return $ret;
     }
 
+    /**
+    * get type option name function
+    * 
+    * This function is for module settings.
+    * @return array
+    */
+
     public static function get_type_option_names() {
         return array_merge(parent::get_type_option_names(), array('key'));
     }
+
+    /**
+    * get type config form function
+    * 
+    * This function is the form of module settings.
+    * @return none
+    */
 
     public static function type_config_form($mform, $classname = 'repository') {
         parent::type_config_form($mform);
@@ -115,13 +129,23 @@ class repository_pixabay extends repository {
         $mform->setType('key', PARAM_RAW_TRIMMED);
     }
 
+    /**
+    * check login function
+    * 
+    * This function help showing the search form.
+    * @return bool
+    */
+
     public function check_login() {
         return !empty($this->keyword);
     }
 
-     /**
-     * Generate search form
-     */
+    /**
+    * print login function
+    *
+    * This function generates the search form.
+    * @return array
+    */
     public function print_login($ajax = true) {
         $ret = array();
         $logo = '<a href="https://pixabay.com/" target="_new">
@@ -174,6 +198,8 @@ class repository_pixabay extends repository {
     }
 
     /**
+     * supported returntype function
+     * 
      * pixaby plugin only return internal links, according to pixabay term of use.
      * @return int
      */
@@ -182,4 +208,3 @@ class repository_pixabay extends repository {
     }
 
 }
-
