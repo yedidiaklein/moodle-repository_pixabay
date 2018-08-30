@@ -42,7 +42,7 @@ class repository_pixabay extends repository {
 
     /**
      * Search function
-     * 
+     *
      * This is the function that do the search in pixabay and return an array of images.
      * @return array
      */
@@ -50,7 +50,7 @@ class repository_pixabay extends repository {
     public function search($searchtext, $page = 0) {
         global $SESSION;
         $perpage = 21;
-        $key = get_config('pixabay','key');
+        $key = get_config('pixabay', 'key');
         if (($searchtext == "") && (isset($SESSION->pixabaysearch))) {
             $q = $SESSION->pixabaysearch;
         } else {
@@ -58,13 +58,12 @@ class repository_pixabay extends repository {
             $SESSION->pixabaysearch = $q;
         }
         if (!$page) {
-            $page =1;
+            $page = 1;
         }
         $sort = optional_param('pixabay_sort', 'popular', PARAM_TEXT);
         $safesearch = optional_param('pixabay_safesearch', 'true', PARAM_TEXT);
         $url = "https://pixabay.com/api/?key=" . $key . "&q=" . $q . "&order=" . $sort . "&safesearch=" . $safesearch;
         $url .= "&per_page=" . $perpage . "&page=" . $page;
-        error_log($url);
         $json = file_get_contents($url);
         $results = json_decode($json);
 
@@ -87,13 +86,13 @@ class repository_pixabay extends repository {
         }
 
         $ret  = array();
-        $ret['nologin'] = FALSE;
+        $ret['nologin'] = false;
         $ret['page'] = (int)$page;
         if ($ret['page'] < 1) {
             $ret['page'] = 1;
         }
         $start = 1;
-        $max = ceil(($results->totalHits)/$perpage);
+        $max = ceil(($results->totalHits) / $perpage);
         $ret['list'] = $list;
         $ret['norefresh'] = true;
         $ret['nosearch'] = false;
@@ -103,22 +102,22 @@ class repository_pixabay extends repository {
     }
 
     /**
-    * get type option name function
-    * 
-    * This function is for module settings.
-    * @return array
-    */
+     * get type option name function
+     *
+     * This function is for module settings.
+     * @return array
+     */
 
     public static function get_type_option_names() {
         return array_merge(parent::get_type_option_names(), array('key'));
     }
 
     /**
-    * get type config form function
-    * 
-    * This function is the form of module settings.
-    * @return none
-    */
+     * get type config form function
+     *
+     * This function is the form of module settings.
+     * @return none
+     */
 
     public static function type_config_form($mform, $classname = 'repository') {
         parent::type_config_form($mform);
@@ -130,22 +129,22 @@ class repository_pixabay extends repository {
     }
 
     /**
-    * check login function
-    * 
-    * This function help showing the search form.
-    * @return bool
-    */
+     * check login function
+     *
+     * This function help showing the search form.
+     * @return bool
+     */
 
     public function check_login() {
         return !empty($this->keyword);
     }
 
     /**
-    * print login function
-    *
-    * This function generates the search form.
-    * @return array
-    */
+     * print login function
+     *
+     * This function generates the search form.
+     * @return array
+     */
     public function print_login($ajax = true) {
         $ret = array();
         $logo = '<a href="https://pixabay.com/" target="_new">
@@ -175,7 +174,7 @@ class repository_pixabay extends repository {
 
         $safesearch = new stdClass();
         $safesearch->type = 'select';
-        $safesearch->options = array( 
+        $safesearch->options = array(
             (object)array(
                 'value' => 'true',
                 'label' => get_string('safe', 'repository_pixabay')
@@ -193,13 +192,13 @@ class repository_pixabay extends repository {
         $ret['login'] = array($search, $sort, $safesearch);
         $ret['login_btn_label'] = get_string('search');
         $ret['login_btn_action'] = 'search';
-        $ret['allowcaching'] = true; // indicates that login form can be cached in filepicker.js
+        $ret['allowcaching'] = true; // Indicates that login form can be cached in filepicker.js.
         return $ret;
     }
 
     /**
      * supported returntype function
-     * 
+     *
      * pixaby plugin only return internal links, according to pixabay term of use.
      * @return int
      */
