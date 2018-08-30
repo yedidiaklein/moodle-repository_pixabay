@@ -34,20 +34,37 @@ class repository_pixabay extends repository {
 
     /**
      * Get Listing function
-     *
-     *
      * @return array
      */
     public function get_listing($path = '', $page = '') {
         return array('list' => array());
     }
 
+    /**
+     * Search function
+     * 
+     * This is the function that do the search in pixabay and return an array of images.
+     * @return array
+     */
+
     public function search($searchtext, $page = 0) {
+        global $SESSION;
+        $perpage = 21;
         $key = get_config('pixabay','key');
-        $q = $searchtext;
+        if (($searchtext == "") && (isset($SESSION->pixabaysearch))) {
+            $q = $SESSION->pixabaysearch;
+        } else {
+            $q = $searchtext;
+            $SESSION->pixabaysearch = $q;
+        }
+        if (!$page) {
+            $page =1;
+        }
         $sort = optional_param('pixabay_sort', 'popular', PARAM_TEXT);
         $safesearch = optional_param('pixabay_safesearch', 'true', PARAM_TEXT);
         $url = "https://pixabay.com/api/?key=" . $key . "&q=" . $q . "&order=" . $sort . "&safesearch=" . $safesearch;
+        $url .= "&per_page=" . $perpage . "&page=" . $page;
+        error_log($url);
         $json = file_get_contents($url);
         $results = json_decode($json);
 
@@ -76,7 +93,7 @@ class repository_pixabay extends repository {
             $ret['page'] = 1;
         }
         $start = 1;
-        $max = 9;
+        $max = ceil(($results->totalHits)/$perpage);
         $ret['list'] = $list;
         $ret['norefresh'] = true;
         $ret['nosearch'] = false;
