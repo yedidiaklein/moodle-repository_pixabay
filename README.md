@@ -12,5 +12,7 @@ _How to Install_
 * enjoy!
 
 _Copyright_
-Developped by Yedidia Klein <yedidia@openapp.co.il> from Openapp LTD. Israel.
+* Developped by Yedidia Klein <yedidia@openapp.co.il> from Openapp LTD. Israel.
+* License GPLv3
+* Use at your own risk.
 
