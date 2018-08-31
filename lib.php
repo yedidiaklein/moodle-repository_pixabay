@@ -25,15 +25,23 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/repository/lib.php');
-/**
- * repository_pixabay class
- * This is a class used to browse images from wikimedia
- */
 
+/**
+ * Main repository_pixabay class.
+ *
+ * @package    repository_pixabay
+ * @copyright  2018
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class repository_pixabay extends repository {
 
     /**
      * Get Listing function
+     *
+     * This function is for init of repository.
+     * @param string $path
+     * @param int $page
+     *
      * @return array
      */
     public function get_listing($path = '', $page = '') {
@@ -44,9 +52,11 @@ class repository_pixabay extends repository {
      * Search function
      *
      * This is the function that do the search in pixabay and return an array of images.
+     * @param string $searchtext
+     * @param int $page
+     *
      * @return array
      */
-
     public function search($searchtext, $page = 0) {
         global $SESSION;
         $perpage = 21;
@@ -106,7 +116,6 @@ class repository_pixabay extends repository {
      * This function is for module settings.
      * @return array
      */
-
     public static function get_type_option_names() {
         return array_merge(parent::get_type_option_names(), array('key'));
     }
@@ -115,9 +124,12 @@ class repository_pixabay extends repository {
      * get type config form function
      *
      * This function is the form of module settings.
+     *
+     * @param object $mform
+     * @param string $classname
+     *
      * @return none
      */
-
     public static function type_config_form($mform, $classname = 'repository') {
         parent::type_config_form($mform);
         $key = get_config('repository_pixabay', 'key');
@@ -133,7 +145,6 @@ class repository_pixabay extends repository {
      * This function help showing the search form.
      * @return bool
      */
-
     public function check_login() {
         return !empty($this->keyword);
     }
@@ -142,6 +153,8 @@ class repository_pixabay extends repository {
      * print login function
      *
      * This function generates the search form.
+     * @param bool $ajax
+     *
      * @return array
      */
     public function print_login($ajax = true) {
@@ -149,8 +162,7 @@ class repository_pixabay extends repository {
         $key = get_config('pixabay', 'key');
         if (trim($key) == "") {
             $warning = "<p class='errorbox'>" . get_string('warning', 'repository_pixabay') . "</p>";
-        }
-        else {
+        } else {
             $warning = "";
         }
         $logo = '<a href="https://pixabay.com/" target="_new">
