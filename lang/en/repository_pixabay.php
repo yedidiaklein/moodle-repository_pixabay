@@ -35,3 +35,4 @@ $string['sortby'] = "Sort By";
 $string['popular'] = "Popular";
 $string['latest'] = "Latest";
 $string['safesearch'] = "Safe Search<br>(only images suitable for all ages should be returned)";
+$string['warning'] = "Key isn't set !! You must set it in Pixabay Repository settings.";

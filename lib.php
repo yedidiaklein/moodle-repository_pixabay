@@ -79,7 +79,6 @@ class repository_pixabay extends repository {
             'thumbnail_width' => 150,
             'thumbnail_height' => 100,
             'size' => $value->imageSize,
-            'date' => 0,
             'author' => $value->user,
             'source' => $value->webformatURL,
             );
@@ -147,6 +146,13 @@ class repository_pixabay extends repository {
      */
     public function print_login($ajax = true) {
         $ret = array();
+        $key = get_config('pixabay', 'key');
+        if (trim($key) == "") {
+            $warning = "<p class='errorbox'>" . get_string('warning', 'repository_pixabay') . "</p>";
+        }
+        else {
+            $warning = "";
+        }
         $logo = '<a href="https://pixabay.com/" target="_new">
                     <img src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay" style="width:100%">
                 </a><br>';
@@ -154,7 +160,7 @@ class repository_pixabay extends repository {
         $search->type = 'text';
         $search->id   = 'pixabay_search';
         $search->name = 's';
-        $search->label = $logo . get_string('search', 'repository_pixabay').': ';
+        $search->label = $warning . $logo . get_string('search', 'repository_pixabay').': ';
 
         $sort = new stdClass();
         $sort->type = 'select';

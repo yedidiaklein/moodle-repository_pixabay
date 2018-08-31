@@ -35,3 +35,4 @@ $string['sortby'] = "מיון לפי";
 $string['popular'] = "חביבות";
 $string['latest'] = "חדש";
 $string['safesearch'] = "חיפוש בטוח<br>(יוצגו רק תמונות התאימות לכל הגילאים)";
+$string['warning'] = "המפתח אינו מוגדר. חובה להגדירו בהגדרות מאגר Pixabay";
