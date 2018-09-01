@@ -91,6 +91,7 @@ class repository_pixabay extends repository {
             'size' => $value->imageSize,
             'author' => $value->user,
             'source' => $value->webformatURL,
+            'license' => 'Creative Commons CC0'
             );
         }
 
