@@ -61,17 +61,21 @@ class repository_pixabay extends repository {
         global $SESSION;
         $perpage = 21;
         $key = get_config('pixabay', 'key');
+        $sort = optional_param('pixabay_sort', 'popular', PARAM_TEXT);
+        $safesearch = optional_param('pixabay_safesearch', 'true', PARAM_TEXT);
         if (($searchtext == "") && (isset($SESSION->pixabaysearch))) {
             $q = $SESSION->pixabaysearch;
+            $sort = $SESSION->pixabaysort;
+            $safesearch = $SESSION->pixabaysafesearch;
         } else {
             $q = $searchtext;
             $SESSION->pixabaysearch = $q;
+            $SESSION->pixabaysort = $sort;
+            $SESSION->pixabaysafesearch = $safesearch;
         }
         if (!$page) {
             $page = 1;
         }
-        $sort = optional_param('pixabay_sort', 'popular', PARAM_TEXT);
-        $safesearch = optional_param('pixabay_safesearch', 'true', PARAM_TEXT);
         $url = "https://pixabay.com/api/?key=" . $key . "&q=" . $q . "&order=" . $sort . "&safesearch=" . $safesearch;
         $url .= "&per_page=" . $perpage . "&page=" . $page;
         $json = file_get_contents($url);
