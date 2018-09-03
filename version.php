@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version = 2018083101;      // The current module version (Date: YYYYMMDDXX).
-$plugin->requires = 2017032401;      // Requires this Moodle version.
+$plugin->requires = 2016052300;      // Requires this Moodle version.
 $plugin->component = 'repository_pixabay';// Full name of the plugin (used for diagnostics).
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = "1.0 (Build - 2018083101)";
