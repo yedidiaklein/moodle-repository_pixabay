@@ -2,7 +2,7 @@ I really love Pixabay images. so I wanted to have an easy way to use these image
 
 _How to Install_
 * Download as zip or via Git.
-* Extract in your [moodle_root]/local
+* Extract in your [moodle_root]/repository
 * Rename the extracted directory to : pixabay
 * Get you API key from pixabay at https://pixabay.com/api/docs/ (You have to create there an account)
 * Go to your Moodle notification page and install the plugin.
