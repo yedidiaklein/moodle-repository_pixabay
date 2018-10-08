@@ -9,7 +9,7 @@ _How to Install_
 * Go to your moodle admin -> plugin -> repositories - and enable this repository.
 * Get into this repository settings and insert your API key (won't work without key!)
 * Now the repository should be in your file picker.
-* enjoy!
+* Enjoy!
 
 _Copyright_
 * Developped by Yedidia Klein <yedidia@openapp.co.il> from Openapp LTD. Israel.
