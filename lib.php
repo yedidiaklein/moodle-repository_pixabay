@@ -82,7 +82,7 @@ class repository_pixabay extends repository {
         $results = json_decode($json);
 
         foreach ($results->hits as $key => $value) {
-            $title = str_replace("https://pixabay.com/en/", "", $value->pageURL);
+            $title = str_replace("https://pixabay.com/", "", $value->pageURL);
             $title = preg_replace("/-(\d+)\//", ".jpg", $title);
             $list[] = array(
             'shorttitle' => $title,
