@@ -79,24 +79,30 @@ class repository_pixabay extends repository {
         $url = "https://pixabay.com/api/?key=" . $key . "&q=" . $q . "&order=" . $sort . "&safesearch=" . $safesearch;
         $url .= "&per_page=" . $perpage . "&page=" . $page;
         $json = file_get_contents($url);
-        $results = json_decode($json);
 
-        foreach ($results->hits as $key => $value) {
-            $title = str_replace("https://pixabay.com/", "", $value->pageURL);
-            $title = preg_replace("/-(\d+)\//", ".jpg", $title);
-            $list[] = array(
-            'shorttitle' => $title,
-            'thumbnail_title' => $title,
-            'title' => $title,
-            'description' => $title,
-            'thumbnail' => $value->webformatURL,
-            'thumbnail_width' => 150,
-            'thumbnail_height' => 100,
-            'size' => $value->imageSize,
-            'author' => $value->user,
-            'source' => $value->webformatURL,
-            'license' => 'Creative Commons CC0'
-            );
+        if (empty($json)) {
+            print_error('queryfailed', 'repository_pixabay', '', null,
+                get_string('queryfailed_help', 'repository_pixabay'));
+        } else {
+            $results = json_decode($json);
+
+            foreach ($results->hits as $key => $value) {
+                $title = str_replace("https://pixabay.com/", "", $value->pageURL);
+                $title = preg_replace("/-(\d+)\//", ".jpg", $title);
+                $list[] = array(
+                    'shorttitle' => $title,
+                    'thumbnail_title' => $title,
+                    'title' => $title,
+                    'description' => $title,
+                    'thumbnail' => $value->webformatURL,
+                    'thumbnail_width' => 150,
+                    'thumbnail_height' => 100,
+                    'size' => $value->imageSize,
+                    'author' => $value->user,
+                    'source' => $value->webformatURL,
+                    'license' => 'Creative Commons CC0'
+                );
+            }
         }
 
         $ret  = array();
@@ -105,7 +111,6 @@ class repository_pixabay extends repository {
         if ($ret['page'] < 1) {
             $ret['page'] = 1;
         }
-        $start = 1;
         $max = ceil(($results->totalHits) / $perpage);
         $ret['list'] = $list;
         $ret['norefresh'] = true;
