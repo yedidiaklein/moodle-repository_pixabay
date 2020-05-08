@@ -79,6 +79,7 @@ class repository_pixabay extends repository {
         $url = "https://pixabay.com/api/?key=" . $key . "&q=" . $q . "&order=" . $sort . "&safesearch=" . $safesearch;
         $url .= "&per_page=" . $perpage . "&page=" . $page;
         $json = file_get_contents($url);
+        $list = [];
 
         if (empty($json)) {
             print_error('queryfailed', 'repository_pixabay', '', null,
