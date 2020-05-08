@@ -11,8 +11,11 @@ _How to Install_
 * Now the repository should be in your file picker.
 * Enjoy!
 
+_Thanks_
+* Thanks to the contributors on Github: sharpchi & tomdickman
+* Your pull requests help us to have better plugin. 
+
 _Copyright_
 * Developped by Yedidia Klein <yedidia@openapp.co.il> from Openapp LTD. Israel.
 * License GPLv3
 * Use at your own risk.
-
