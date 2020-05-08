@@ -1,5 +1,7 @@
 I really love Pixabay images. so I wanted to have an easy way to use these images in Moodle.
 
+This release support privacy and has a bug fix of endless spinner when API request failed, Thanks to github users : sharpchi & tomdickman 
+
 _How to Install_
 * Download as zip or via Git.
 * Extract in your [moodle_root]/repository
