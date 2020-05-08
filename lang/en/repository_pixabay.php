@@ -36,3 +36,5 @@ $string['popular'] = "Popular";
 $string['latest'] = "Latest";
 $string['safesearch'] = "Safe Search<br>(only images suitable for all ages should be returned)";
 $string['warning'] = "Key isn't set !! You must set it in Pixabay Repository settings.";
+$string['queryfailed'] = "Pixabay search query failed, please try again.";
+$string['queryfailed_help'] = "Query failed due to search string being greater than 100 character limit imposed by Pixabay, or API hourly request threshold being reached.";
