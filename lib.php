@@ -81,7 +81,7 @@ class repository_pixabay extends repository {
         $json = file_get_contents($url);
         $list = [];
 
-        if (empty($json)) {
+        if (isset($json) && empty($json)) {
             print_error('queryfailed', 'repository_pixabay', '', null,
                 get_string('queryfailed_help', 'repository_pixabay'));
         } else {
@@ -117,7 +117,7 @@ class repository_pixabay extends repository {
         $ret['norefresh'] = true;
         $ret['nosearch'] = false;
         // If the number of results is smaller than $max, it means we reached the last page.
-        $ret['pages'] = (count($ret['list']) < $max) ? $ret['page'] : -1;
+        $ret['pages'] = (empty($list) || count($list) < $max) ? $ret['page'] : -1;
         return $ret;
     }
 
