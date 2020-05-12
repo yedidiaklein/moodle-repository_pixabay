@@ -112,12 +112,16 @@ class repository_pixabay extends repository {
         if ($ret['page'] < 1) {
             $ret['page'] = 1;
         }
-        $max = ceil(($results->totalHits) / $perpage);
         $ret['list'] = $list;
         $ret['norefresh'] = true;
         $ret['nosearch'] = false;
-        // If the number of results is smaller than $max, it means we reached the last page.
-        $ret['pages'] = (empty($list) || count($list) < $max) ? $ret['page'] : -1;
+
+        if (!empty($results->totalHits)) {
+            $ret['pages'] = (int) ceil(($results->totalHits) / $perpage);
+        } else {
+            $ret['pages'] = 1;
+        }
+
         return $ret;
     }
 
