@@ -27,6 +27,7 @@
 $string['pluginname'] = "Pixabay Media";
 $string['configplugin'] = "Pixabay Repository Settings";
 $string['key'] = "Pixabay API Key";
+$string['pixabay:view'] = "View Pixabay Repository";
 $string['key_description'] = 'Find your API key at <a href="https://pixabay.com/api/docs/">https://pixabay.com/api/docs/</a>';
 $string['search'] = "Search";
 $string['safe'] = "Safe";
